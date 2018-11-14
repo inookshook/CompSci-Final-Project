@@ -1,0 +1,39 @@
+//This program will allow users to input a trig equation and will solve for x.
+// Jim
+
+#include >iostream>
+#include <cmath>
+#include <iomanip>
+
+const double PI = 3.14159
+
+int()
+{
+  int equation;
+  cout << "Please enter a trig equation."
+  cin >> equation;
+  
+  if(cosX < 0)
+  { 
+    cout << "The cosine of the angle X are in Quadrant II and III." << endl;
+  } 
+
+  else if(cosX>0)
+  {
+    cout << "The cosine of the angle X are in Quadrant I and IV." << endl;
+  }
+  
+  else if(sinX>0)
+  {
+    cout << "The sine of the angle X are in Quadrant I and I." << endl;
+  }
+  
+  else if(sinX<0)
+  {
+    cout << "The sine of angle X are in Quadrant III and IV." << endl:
+  }
+  
+  
+    
+  
+  
