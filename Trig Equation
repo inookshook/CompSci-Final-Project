@@ -1,4 +1,5 @@
-//This program will allow users to input a trig equation and will solve for x.
+//This program will allow users to input a simple trig equation involving sine and cosine to solve for x, 
+  then determine which quadrant it's located in and indicate whether it's positive or negative.
 // Jim
 
 #include >iostream>
@@ -15,22 +16,26 @@ int()
   
   if(cosX < 0)
   { 
-    cout << "The cosine of the angle X are in Quadrant II and III." << endl;
+    cout << "The cosine of angle X is in Quadrant II and III." << endl;
+    cout <<"-" << cosX << endl;
   } 
 
   else if(cosX>0)
   {
-    cout << "The cosine of the angle X are in Quadrant I and IV." << endl;
+    cout << "The cosine of angle X is in Quadrant I and IV." << endl;
+    cout << cosX << endl;
   }
   
   else if(sinX>0)
   {
-    cout << "The sine of the angle X are in Quadrant I and I." << endl;
+    cout << "The sine of angle X is in Quadrant I and I." << endl;
+    cout << sinX << endl;
   }
   
   else if(sinX<0)
   {
-    cout << "The sine of angle X are in Quadrant III and IV." << endl:
+    cout << "The sine of angle X is in Quadrant III and IV." << endl:
+    cout <<"-" << sinX << endl;
   }
   
   
