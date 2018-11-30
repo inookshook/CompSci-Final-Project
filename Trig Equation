@@ -1,44 +1,66 @@
-//This program will allow users to input a simple trig equation involving sine and cosine to solve for x, 
-  then determine which quadrant it's located in and indicate whether it's positive or negative.
+//This program will allow users to input a simple trig equation involving sine and cosine to solve for X, 
+//then determine which quadrant it's located in and indicate whether it's positive or negative.
 // Jim
 
-#include >iostream>
+#include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <string>
 
-const double PI = 3.14159
+using namespace std;
 
-int()
+const double PI = 3.14159;
+double equation(int sinX, int cosX);
+
+double a, b,X;
+
+
+double sinX()
 {
-  int equation;
-  cout << "Please enter a trig equation."
-  cin >> equation;
-  
-  if(cosX < 0)
-  { 
-    cout << "The cosine of angle X is in Quadrant II and III." << endl;
-    cout <<"-" << cosX << endl;
-  } 
+	
+	 X = a * sin(X) - b;
 
-  else if(cosX>0)
-  {
-    cout << "The cosine of angle X is in Quadrant I and IV." << endl;
-    cout << cosX << endl;
-  }
-  
-  else if(sinX>0)
-  {
-    cout << "The sine of angle X is in Quadrant I and I." << endl;
-    cout << sinX << endl;
-  }
-  
-  else if(sinX<0)
-  {
-    cout << "The sine of angle X is in Quadrant III and IV." << endl:
-    cout <<"-" << sinX << endl;
-  }
-  
-  
-    
-  
+	return X;
+}
+	
+
+
+int main()
+{
+	double sin(X), cos(X);
+	double a, b;
+	cout << "This is a simple trig equation, a*sinX-b=0 or a*cosX-b=0, please enter values for a and b." << endl;					//An example of a simple trig equation would be 2sinX-1=0, 
+	cin >> a >> b;																									//which becomes sinX=1/2 or 0.5
+	
+
+	if (X < 0)
+	{
+		cout << "The cosine of angle X is in Quadrant II and III." << endl;
+		cout << "-" << X << endl;
+	}
+
+	else if (X>0)
+	{
+		cout << "The cosine of angle X is in Quadrant I and IV." << endl;
+		cout << X << endl;
+	}
+
+	else if (X>0)
+	{
+		cout << "The sine of angle X is in Quadrant I and I." << endl;
+		cout << X << endl;
+	}
+
+	else if (X < 0)
+	{
+		cout << "The sine of angle X is in Quadrant III and IV." << endl;
+		cout << "-" << X << endl;
+	}
+	else (X > 1 || X > 1);
+	{
+		cout << "Value of cosine or sine cannot exceed 1." << endl;
+		cout << "Please enter another equation." << endl;
+	}
+	return 0;
+}
   
