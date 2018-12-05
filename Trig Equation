@@ -1,66 +1,139 @@
-//This program will allow users to input a simple trig equation involving sine and cosine to solve for X, 
-//then determine which quadrant it's located in and indicate whether it's positive or negative.
-// Jim
+// Right Triangle
+// Jim, Michelle, Angel
 
 #include <iostream>
 #include <cmath>
 #include <iomanip>
 #include <string>
-
+#define PI 3.14159265
 using namespace std;
 
-const double PI = 3.14159;
-double equation(int sinX, int cosX);
+double hypo(double side1, double side2);
+double asinAngleA(double side1, double side2, double h);
+double asinAngleB(double side1, double side2, double h);
+double atanAngleA(double side1, double side2);
+double rightTriangle();
 
-double a, b,X;
 
 
-double sinX()
+
+double hypo(double side1, double side2) //used to calculate the hypotenuse
 {
-	
-	 X = a * sin(X) - b;
-
-	return X;
+	double h;
+	h = sqrt(pow(side1, 2) + pow(side2, 2));
+	return h;
 }
-	
-
-
-int main()
+double asinAngleA(double side1, double side2, double h) //used to calculate the sine of Angle A
 {
-	double sin(X), cos(X);
-	double a, b;
-	cout << "This is a simple trig equation, a*sinX-b=0 or a*cosX-b=0, please enter values for a and b." << endl;					//An example of a simple trig equation would be 2sinX-1=0, 
-	cin >> a >> b;																									//which becomes sinX=1/2 or 0.5
+	double asinA;
+	asinA = asin(side1 / double(h));
+
+	return asinA * 180 / PI;
+}
+
+double acosAngleA(double side1, double side2, double h) //used to calculate the cosine of Angle A
+{
+	double acosA;
+	acosA = acos(side2 / double(h));
+	return acosA * 180 / PI;
+}
+
+double asinAngleB(double side1, double side2, double h) //used to calculate the sin of Angle B
+{
+	double asinB;
+	asinB = asin(side2 / h);
+	return asinB * 180 / PI;
+}
+
+double acosAngleB(double side1, double side2, double h) //used to calculate the cosine of Angle B
+{
+	double B;
+	B = acos(side1 / double(h));
+	return B * 180 / PI;
+}
+double atanAngleA(double side1, double side2)
+{
+
+	double atanAngleA;
+	if (side2 == 0)
+	{
+		cout << "You cannot divide by O, please enter a different value for side2.\n";
+	}
 	
+	atanAngleA = atan(side1 / side2);
+	return atanAngleA * 180 / PI;
+}
 
-	if (X < 0)
+	double atanAngleB(double side1, double side2)
 	{
-		cout << "The cosine of angle X is in Quadrant II and III." << endl;
-		cout << "-" << X << endl;
+
+		double atanAngleB;
+		if (side1 == 0)
+		{
+			cout << "You cannot divide by O, please enter a different value for side1.\n";
+		}
+	
+			atanAngleB = atan(side2 / side1);
+		return atanAngleB * 180 / PI;
+}
+ 
+	
+	int main()
+{
+	double side1, side2, asinA, acosA, asinB, acosB, h, atanA, atanB;
+	
+	cout << "Welcome! " << endl << "This is a simple trigonometric program designed to calculate the dimensions and angles of a right triangle." << endl;
+	cout << endl;
+	cout << "       /|  " << endl;
+	cout << "      / |   " << endl;
+	cout << "     /  |   " << endl;
+	cout << "    /   |     " << endl;
+	cout << " h /    |  a " << endl;
+	cout << "  /    _|  " << endl;
+	cout << " /____|_| " << endl;
+	cout << "     b      " << endl;													// a little graphic to give the viewer context (and to add a little fun to the program! :)
+	cout << "First, please input a value for a and b. \n";
+	cout << "a(side1) = ";															//a == side1
+	cin >> side1;
+	cout << endl;
+	cout << "b(side2) = ";															//b == side2
+	cin >> side2;
+	cout << endl;
+	h = hypo(side1, side2);
+	cout << "The hypotenuse (h):" << h << endl;
+
+	asinA = asinAngleA(side1, side2, h);
+	{
+		cout << "Angle A using inverse sine:" << asinA << " Degrees" << endl;
+	}
+	
+	acosA = acosAngleA(side1, side2, h);
+	{
+		cout << "Angle A using inverse cosin: " << acosA << " Degrees" << endl;
+	}
+	
+	asinB = asinAngleB(side1, side2, h);
+	{
+		cout << "Angle B using inverse sine: " << asinB << " Degrees" << endl;
+	}
+	
+	acosB = acosAngleB(side1, side2, h);
+	{
+		cout << "Angle B using inverse cosine: " << acosB << " Degrees" << endl;
+	}
+	
+	atanA = atanAngleA(side1, side2);
+	if(side2 !=0)
+	{
+
+
+		cout << "Angle A using inverse tangent:" << atanA << endl;
 	}
 
-	else if (X>0)
+	atanB = atanAngleB(side1, side2);
+	if(side1 !=0)
 	{
-		cout << "The cosine of angle X is in Quadrant I and IV." << endl;
-		cout << X << endl;
-	}
-
-	else if (X>0)
-	{
-		cout << "The sine of angle X is in Quadrant I and I." << endl;
-		cout << X << endl;
-	}
-
-	else if (X < 0)
-	{
-		cout << "The sine of angle X is in Quadrant III and IV." << endl;
-		cout << "-" << X << endl;
-	}
-	else (X > 1 || X > 1);
-	{
-		cout << "Value of cosine or sine cannot exceed 1." << endl;
-		cout << "Please enter another equation." << endl;
+		cout << "Angle B using inverse tangent:" << atanB << endl;
 	}
 	return 0;
 }
-  
