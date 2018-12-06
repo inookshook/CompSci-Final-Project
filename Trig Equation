@@ -1,139 +1,43 @@
-// Right Triangle
-// Jim, Michelle, Angel
+//Final Project with Arrays and possibly Pointers
+
+//Jim, Michelle and Angel
 
 #include <iostream>
 #include <cmath>
 #include <iomanip>
-#include <string>
 #define PI 3.14159265
+#include <limits>
 using namespace std;
-
-double hypo(double side1, double side2);
-double asinAngleA(double side1, double side2, double h);
-double asinAngleB(double side1, double side2, double h);
-double atanAngleA(double side1, double side2);
-double rightTriangle();
-
-
-
-
-double hypo(double side1, double side2) //used to calculate the hypotenuse
+int main()
 {
-	double h;
-	h = sqrt(pow(side1, 2) + pow(side2, 2));
-	return h;
-}
-double asinAngleA(double side1, double side2, double h) //used to calculate the sine of Angle A
-{
-	double asinA;
-	asinA = asin(side1 / double(h));
-
-	return asinA * 180 / PI;
-}
-
-double acosAngleA(double side1, double side2, double h) //used to calculate the cosine of Angle A
-{
-	double acosA;
-	acosA = acos(side2 / double(h));
-	return acosA * 180 / PI;
-}
-
-double asinAngleB(double side1, double side2, double h) //used to calculate the sin of Angle B
-{
-	double asinB;
-	asinB = asin(side2 / h);
-	return asinB * 180 / PI;
-}
-
-double acosAngleB(double side1, double side2, double h) //used to calculate the cosine of Angle B
-{
-	double B;
-	B = acos(side1 / double(h));
-	return B * 180 / PI;
-}
-double atanAngleA(double side1, double side2)
-{
-
-	double atanAngleA;
-	if (side2 == 0)
-	{
-		cout << "You cannot divide by O, please enter a different value for side2.\n";
-	}
+	const int sine = 5;
+	const int cosine = 5;
+	int i, j,e;
+	double tangent[sine][cosine] = { {0, 0.5, 0.707106, 0.866025, 1},
+									{1,0.866025, 0.707106, 0.5, 0} };
 	
-	atanAngleA = atan(side1 / side2);
-	return atanAngleA * 180 / PI;
-}
+	float result = 0;
 
-	double atanAngleB(double side1, double side2)
+	
+	for (i = 0; i < sine; i++)
 	{
-
-		double atanAngleB;
-		if (side1 == 0)
+		for (e = 0; e < cosine; e++)
 		{
-			cout << "You cannot divide by O, please enter a different value for side1.\n";
+			
 		}
-	
-			atanAngleB = atan(side2 / side1);
-		return atanAngleB * 180 / PI;
-}
- 
-	
-	int main()
-{
-	double side1, side2, asinA, acosA, asinB, acosB, h, atanA, atanB;
-	
-	cout << "Welcome! " << endl << "This is a simple trigonometric program designed to calculate the dimensions and angles of a right triangle." << endl;
-	cout << endl;
-	cout << "       /|  " << endl;
-	cout << "      / |   " << endl;
-	cout << "     /  |   " << endl;
-	cout << "    /   |     " << endl;
-	cout << " h /    |  a " << endl;
-	cout << "  /    _|  " << endl;
-	cout << " /____|_| " << endl;
-	cout << "     b      " << endl;													// a little graphic to give the viewer context (and to add a little fun to the program! :)
-	cout << "First, please input a value for a and b. \n";
-	cout << "a(side1) = ";															//a == side1
-	cin >> side1;
-	cout << endl;
-	cout << "b(side2) = ";															//b == side2
-	cin >> side2;
-	cout << endl;
-	h = hypo(side1, side2);
-	cout << "The hypotenuse (h):" << h << endl;
+		
+	}
+	result /= tangent[i][e]; //Results is always 0 instead of an actually decimal number.
 
-	asinA = asinAngleA(side1, side2, h);
-	{
-		cout << "Angle A using inverse sine:" << asinA << " Degrees" << endl;
-	}
 	
-	acosA = acosAngleA(side1, side2, h);
-	{
-		cout << "Angle A using inverse cosin: " << acosA << " Degrees" << endl;
-	}
-	
-	asinB = asinAngleB(side1, side2, h);
-	{
-		cout << "Angle B using inverse sine: " << asinB << " Degrees" << endl;
-	}
-	
-	acosB = acosAngleB(side1, side2, h);
-	{
-		cout << "Angle B using inverse cosine: " << acosB << " Degrees" << endl;
-	}
-	
-	atanA = atanAngleA(side1, side2);
-	if(side2 !=0)
-	{
+	const int angle = 5;
+	double degrees[angle] = { 0 ,30 ,45 ,60,90 };
 
 
-		cout << "Angle A using inverse tangent:" << atanA << endl;
-	}
-
-	atanB = atanAngleB(side1, side2);
-	if(side1 !=0)
+	for (j = 0; j < angle; j++)
 	{
-		cout << "Angle B using inverse tangent:" << atanB << endl;
+		cout << "Angle " << degrees[j] << " degrees has a tangent value of = " << result << "." << endl;
 	}
 	return 0;
+	
 }
