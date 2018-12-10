@@ -13,7 +13,9 @@ double hypo(double side1, double side2);
 double asinAngleA(double side1, double side2, double h);
 double asinAngleB(double side1, double side2, double h);
 double atanAngleA(double side1, double side2);
-void quad();
+void quad(double angle);
+
+
 void rightT(double side1, double side2, double asinA, double acosA, double asinB,
 	double acosB, double atanA, double atanB, double h);
 
@@ -26,7 +28,7 @@ double hypo(double side1, double side2) //used to calculate the hypotenuse
 	h = sqrt(pow(side1, 2) + pow(side2, 2));
 	return h;
 }
-double asinAngleA(double side1, double side2, double h) //used to calculate the sine of Angle A
+double asinAngleA(double side1, double side2, double h) //used to calculate Angle using inverse sine.
 {
 	double asinA;
 	asinA = asin(side1 / double(h));
@@ -34,27 +36,26 @@ double asinAngleA(double side1, double side2, double h) //used to calculate the 
 	return asinA * 180 / PI;
 }
 
-double acosAngleA(double side1, double side2, double h) //used to calculate the cosine of Angle A
-{
-	double acosA;
+double acosAngleA(double side1, double side2, double h) //used to calculate Angle A using inverse cosine.
+{double acosA;
 	acosA = acos(side2 / double(h));
 	return acosA * 180 / PI;
 }
 
-double asinAngleB(double side1, double side2, double h) //used to calculate the sin of Angle B
+double asinAngleB(double side1, double side2, double h) //used to calculate Angle B using inverse sine.
 {
 	double asinB;
 	asinB = asin(side2 / h);
 	return asinB * 180 / PI;
 }
 
-double acosAngleB(double side1, double side2, double h) //used to calculate the cosine of Angle B
+double acosAngleB(double side1, double side2, double h) //used to calculate Angle B using inverse cosine.
 {
 	double B;
 	B = acos(side1 / double(h));
 	return B * 180 / PI;
 }
-double atanAngleA(double side1, double side2)
+double atanAngleA(double side1, double side2) //used to calculate Angle A using inverse tangent.
 {
 
 	double atanAngleA;
@@ -67,7 +68,7 @@ double atanAngleA(double side1, double side2)
 	return atanAngleA * 180 / PI;
 }
 
-double atanAngleB(double side1, double side2)
+double atanAngleB(double side1, double side2) //used to calculate Angle B using inverse tangent.
 {
 
 	double atanAngleB;
@@ -81,13 +82,14 @@ double atanAngleB(double side1, double side2)
 }
 
 
-void rightT(double side1, double side2, double asinA, double acosA, double asinB, 
+void rightT(double side1, double side2, double asinA, double acosA, double asinB,
 	double acosB, double atanA, double atanB, double h)
 {
-	
+
 
 	cout << "Welcome! " << endl << "This is a simple trigonometric program designed to calculate the dimensions and angles of a right triangle." << endl;
 	cout << endl;
+	cout << "         B" << endl;
 	cout << "       /|  " << endl;
 	cout << "      / |   " << endl;
 	cout << "     /  |   " << endl;
@@ -95,7 +97,7 @@ void rightT(double side1, double side2, double asinA, double acosA, double asinB
 	cout << " h /    |  a " << endl;
 	cout << "  /    _|  " << endl;
 	cout << " /____|_| " << endl;
-	cout << "     b      " << endl;													// a little graphic to give the viewer context (and to add a little fun to the program! :)
+	cout << "A    b   C   " << endl;													// a little graphic to give the viewer context (and to add a little fun to the program! :)
 	cout << "First, please input a value for a and b. \n";
 	cout << "a(side1) = ";															//a == side1
 	cin >> side1;
@@ -109,60 +111,59 @@ void rightT(double side1, double side2, double asinA, double acosA, double asinB
 
 	asinA = asinAngleA(side1, side2, h);
 	{
-		cout << "Angle A using inverse sine:" << asinA << " Degrees" << endl;
+		cout << "Angle A using inverse sine:" << asinA << " Degrees" << " and has reference angle of" << 180-asinA<< " degrees." << endl;
 	}
-
 	acosA = acosAngleA(side1, side2, h);
 	{
-		cout << "Angle A using inverse cosin: " << acosA << " Degrees" << endl;
+		cout << "Angle A using inverse cosin: " << acosA << " Degrees" << " and has reference angle of " << 180 - acosA << " degrees." << endl;
 	}
 
 	asinB = asinAngleB(side1, side2, h);
 	{
-		cout << "Angle B using inverse sine: " << asinB << " Degrees" << endl;
+		cout << "Angle B using inverse sine: " << asinB << " Degrees" << " and has reference angle of " << 180 - acosA << " degrees." << endl;
 	}
-
 	acosB = acosAngleB(side1, side2, h);
 	{
-		cout << "Angle B using inverse cosine: " << acosB << " Degrees" << endl;
+		cout << "Angle B using inverse cosine: " << acosB << " Degrees" << " and has reference angle of " << 180 - acosB << " degrees." << endl;
 	}
-
 	atanA = atanAngleA(side1, side2);
-	if (side2 != 0)
+	{if (side2 != 0)
 	{
 
 
-		cout << "Angle A using inverse tangent:" << atanA << endl;
+		cout << "Angle A using inverse tangent:" << atanA << "and has reference angle of " << 180 - atanA << " degrees." << endl;
 	}
 
 	atanB = atanAngleB(side1, side2);
 	if (side1 != 0)
 	{
-		cout << "Angle B using inverse tangent:" << atanB << endl;
-	} 
-	
+		cout << "Angle B using inverse tangent:" << atanB << " and has reference angle of "<<180 - atanA << " degrees." << endl;
+	}
+
+	}
 }
 
-void quad(double angle)
-{
-	if (angle <= 90 && angle > 0)
-	{
-		cout << "The angle is in Quadrant I.\n";
-	}
-	else if (angle > 90 && angle <= 180)
-	{
-		cout << "The angle is in Quadrant II. \n";
-	}
-	else if (angle > 180 && angle <= 270)
-	{
-		cout << "The angle is in Quadrant III.\n";
-	}
-	else if (angle > 270 && angle <= 360)
-	{
-		cout << "The angle is in Quadrant IV.\n";
-	}
-}
 	
+	void quad(double angle)
+	{
+		if (angle <= 90 && angle > 0)
+		{
+			cout << "The angle is in Quadrant I.\n";
+		}
+		else if (angle > 90 && angle <= 180)
+		{
+			cout << "The angle is in Quadrant II. \n";
+		}
+		else if (angle > 180 && angle <= 270)
+		{
+			cout << "The angle is in Quadrant III.\n";
+		}
+		else if (angle > 270 && angle <= 360)
+		{
+			cout << "The angle is in Quadrant IV.\n";
+		}
+
+	}
 
 
 const int twoFactorial = 2;                                //using Taylor series with factorials to determine the sine, cosine, and tangent of certain angles. Diminutized here for sake of room and lack of confusion
@@ -176,14 +177,14 @@ const int nineFactorial = 362880;
 
 int main()
 {
-	double side1=0, side2=0, asinA=0,asinB=0, acosA=0, acosB=0, atanA=0, atanB=0, h=0;
-	
-	rightT( side1, side2,  asinA, acosA,  asinB, acosB, atanA, atanB, h);
-	
+	double side1 = 0, side2 = 0, asinA = 0, asinB = 0, acosA = 0, acosB = 0, atanA = 0, atanB = 0, h = 0;
+
+	rightT(side1, side2, asinA, acosA, asinB, acosB, atanA, atanB, h);
+
 	double angle, sine, cosine, tangent, radianAngle;
-	cout << "Please round angle A or B to a whole number and input either.\n";
+	cout << "Please round an angle for A or B to a whole degree number and input either.\n";
 	cin >> angle;
-		
+
 	cout << endl;
 	radianAngle = (PI * angle) / 180;
 	cout << "Radian Angle = " << radianAngle << endl;
