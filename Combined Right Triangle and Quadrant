@@ -113,15 +113,15 @@ double atanAngleB(double side1, double side2)
 }
 void quad(double angle)
 {
-	if (angle <= 90 && angle > 0 || angle > -360 && angle<=-270)
+	if (angle <= 90 && angle > 0 || angle > -360 && angle <= -270)
 	{
 		cout << "The angle is in Quadrant I.\n";
 	}
-	else if (angle > 90 && angle <= 180 || angle >-270 && angle<= -180)
+	else if (angle > 90 && angle <= 180 || angle >-270 && angle <= -180)
 	{
 		cout << "The angle is in Quadrant II. \n";
 	}
-	else if (angle > 180 && angle <= 270 || angle > -180 && angle <=-90)
+	else if (angle > 180 && angle <= 270 || angle > -180 && angle <= -90)
 	{
 		cout << "The angle is in Quadrant III.\n";
 	}
@@ -211,171 +211,183 @@ int introChoice()
 	return choice;
 }
 
+
 int main()
 {
-	int choice = introChoice();
-	if (choice == 1)
+	int answer=0;
+	do
 	{
-		double side1, side2, asinA, acosA, asinB, acosB, h, atanA, atanB;
-		double angle, sine, cosine, tangent, radianAngle;
 
-		cout << "Welcome! " << endl << "This is a simple trigonometric program designed to calculate the dimensions and angles of a right triangle." << endl;
-		cout << endl;
-		cout << "              /| Angle B  " << endl;
-		cout << "             / |   " << endl;
-		cout << "            /  |   " << endl;
-		cout << "           /   |     " << endl;
-		cout << "        h /    |  a " << endl;
-		cout << "         /    _|  " << endl;
-		cout << "        /____|_| " << endl;
-		cout << "Angle A     b   Angle C    " << endl;													// a little graphic to give the viewer context (and to add a little fun to the program! :)
-		cout << "First, please input a value for a and b. \n";
-		cout << "a(side1) = ";															//a == side1
-		cin >> side1;
-		while (side1 == 0)
+		int choice = introChoice();
+		if (choice == 1)
 		{
-			cout << "A side cannot be 0, please enter a number from -infinity to +infinity for side1.\n"; 
+			double side1, side2, asinA, acosA, asinB, acosB, h, atanA, atanB;
+			double angle, sine, cosine, tangent, radianAngle;
+
+			cout << "Welcome! " << endl << "This is a simple trigonometric program designed to calculate the dimensions and angles of a right triangle." << endl;
+			cout << endl;
+			cout << "              /| Angle B  " << endl;
+			cout << "             / |   " << endl;
+			cout << "            /  |   " << endl;
+			cout << "           /   |     " << endl;
+			cout << "        h /    |  a " << endl;
+			cout << "         /    _|  " << endl;
+			cout << "        /____|_| " << endl;
+			cout << "Angle A     b   Angle C    " << endl;													// a little graphic to give the viewer context (and to add a little fun to the program! :)
+			cout << "First, please input a value for a and b. \n";
+			cout << "a(side1) = ";															//a == side1
 			cin >> side1;
-		}
-		cout << endl;
-		cout << "b(side2) = ";															//b == side2
-		cin >> side2;
-		while (side2 == 0)
-		{
-			cout << "A side cannot be 0, please enter a number from -infinity to +infinity for side2.\n"; 
+			while (side1 == 0)
+			{
+				cout << "A side cannot be 0, please enter a number from -infinity to +infinity for side1.\n";
+				cin >> side1;
+			}
+			cout << endl;
+			cout << "b(side2) = ";															//b == side2
 			cin >> side2;
+			while (side2 == 0)
+			{
+				cout << "A side cannot be 0, please enter a number from -infinity to +infinity for side2.\n";
+				cin >> side2;
+			}
+
+			cout << endl;
+			h = hypo(side1, side2);
+			cout << "The hypotenuse (h):" << h << endl;
+			cout << endl;
+			cout << "Stats on Angle A: " << endl;
+			asinA = asinAngleA(side1, side2, h);
+			{
+				cout << "Angle A using inverse sine:" << asinA << " degrees." << endl;
+
+			}
+			acosA = acosAngleA(side1, side2, h);
+			{
+				cout << "Angle A using inverse cosin: " << acosA << " degrees." << endl;
+			}
+			atanA = atanAngleA(side1, side2);
+			if (side2 != 0)
+			{
+
+
+				cout << "Angle A using inverse tangent:" << atanA << " degrees." << endl;
+			}
+			cout << "Reference angles for angle A includes: " << 180 - asinA << " degrees, " << 180 + asinA <<
+				" degrees, and " << 360 - asinA << " degrees." << endl;
+			cout << endl;
+			cout << "Stats on Angle B: " << endl;
+			asinB = asinAngleB(side1, side2, h);
+			{
+				cout << "Angle B using inverse sine: " << asinB << " degrees." << endl;
+			}
+
+			acosB = acosAngleB(side1, side2, h);
+			{
+				cout << "Angle B using inverse cosine: " << acosB << " degrees." << endl;
+			}
+
+			atanB = atanAngleB(side1, side2);
+			if (side1 != 0)
+			{
+				cout << "Angle B using inverse tangent:" << atanB << " degrees." << endl;
+			}
+			cout << "Reference angles for angle B includes: " << 180 - asinB << " degrees, " << 180 + asinB <<
+				" degrees, and " << 360 - asinB << " degrees." << endl;
+			cout << endl;
+			cout << "Please input an angle or a reference angle from A or B to find out its location within a unit circle. \n"; //Quadrant locator.
+			cin >> angle;
+			cout << endl;
+
+			quad(angle);
+
+			if (angle > 180 && angle <= 360)				//Taylor expansion is valid for angles between 0 and PI
+			{
+				angle = -(360 - angle);
+			}
+
+			radianAngle = (PI * angle) / 180;
+			cosine = 1 - (pow(radianAngle, 2) / twoFactorial) + (pow(radianAngle, 4) / fourFactorial) - (pow(radianAngle, 6) / sixFactorial) + (pow(radianAngle, 8) / eightFactorial);
+			sine = radianAngle - (pow(radianAngle, 3) / threeFactorial) + (pow(radianAngle, 5) / fiveFactorial) - (pow(radianAngle, 7) / sevenFactorial) + (pow(radianAngle, 9) / nineFactorial);
+			tangent = sine / cosine;
+
+
+
+			cout << "Sine of " << angle << " degrees equals " << sine << endl;
+			cout << "Cosine of " << angle << " degrees equals " << cosine << endl;
+			cout << "Tangent of " << angle << " degrees equals " << tangent << endl;
+
 		}
+		else if (choice == 2)
+		{
+			float l, a, b, A, V;
+			cout << "                     " << endl;
+			cout << "           V         " << endl;
+			cout << "          /|\\       " << endl;
+			cout << "         / | \\      " << endl;
+			cout << "        /  |  \\     " << endl;
+			cout << "       /   |a  \\ l  " << endl;
+			cout << "      /   _|_   \\   " << endl;
+			cout << "     /___|_|_|___\\  " << endl;
+			cout << "   A         b     A " << endl;
+			cout << "This is a simple triangle to calculate the length and angles of an isocolese triangle." << endl;
+			cout << "Please input the length of the leg and the base of the triangle: " << endl;
+			cout << "leg (l) = ";
+			cin >> l;
+			cout << endl;
+			cout << "base(b) = ";
+			cin >> b;
+			cout << endl;
+			a = isotrianglealt(l, b);
+			cout << "The altitude of the triangle is " << a << endl;
+			A = acosisoAngleA(l, b, a);
+			cout << "Both A Angles are equal to " << A << endl;
+			V = acosApex(b, l);
+			cout << "The Apex Angle equals " << V << endl;
+		}
+		else if (choice == 3)
+		{
+			struct ScaleneTriangle myTriangle;
+			cout << "         Apex Angle            " << endl;
+			cout << "             *       " << endl;
+			cout << "           * * *      " << endl;
+			cout << "          *  *   *     " << endl;
+			cout << " side1   *   *h    * side 2  " << endl;
+			cout << "        *    *       * " << endl;
+			cout << "       *     *         * " << endl;
+			cout << "Angle ******************* Angle" << endl;
+			cout << " A          base            B       " << endl;
+			cout << endl;
+			cout << "Welcome! " << endl;
+			cout << "This is a simple program to calculate the properties of a scalene triangle." << endl;
+			cout << endl;
+			cout << "First, please enter side 1 for your triangle: ";
+			cin >> myTriangle.side1;
+			cout << endl;
+			cout << "Enter the base for your triangle: ";
+			cin >> myTriangle.base;
+			cout << endl;
+			cout << "Enter one of the angles in your triangle: ";
+			cin >> myTriangle.angleA;
+			cout << endl;
+
+			ScaleneHeight(myTriangle);
+			ScaleneArea(myTriangle);
+			ScaleneSide2(myTriangle);
+			ScaleneAngleB(myTriangle);
+			ScaleneApexAngle(myTriangle);
+
+		}
+		else
+		{
+			cout << "Sorry, that is not a valid choice. Please select one of the above options." << endl;
+			cin >> choice;
+		}
+
+		cout << endl;
+
 		
-		cout << endl;
-		h = hypo(side1, side2);
-		cout << "The hypotenuse (h):" << h << endl;
-		cout << endl;
-		cout << "Stats on Angle A: " << endl;
-		asinA = asinAngleA(side1, side2, h);
-		{
-			cout << "Angle A using inverse sine:" << asinA << " degrees." << endl;
-				
-		}
-		acosA = acosAngleA(side1, side2, h);
-		{
-			cout << "Angle A using inverse cosin: " << acosA << " degrees." << endl;
-		}
-		atanA = atanAngleA(side1, side2);
-		if (side2 != 0)
-		{
+		cout << "Would you like to try a different choice? Yes=1 or No=2" << endl;
+		cin >> answer;
+	}while (answer == 1);
 
-
-			cout << "Angle A using inverse tangent:" << atanA << " degrees." << endl;
-		}
-		cout << "Reference angles for angle A includes: " << 180 - asinA << " degrees, " << 180 + asinA <<
-			" degrees, and " << 360 - asinA << " degrees." << endl;
-		cout << endl;
-		cout << "Stats on Angle B: " << endl;
-		asinB = asinAngleB(side1, side2, h);
-		{
-			cout << "Angle B using inverse sine: " << asinB << " degrees." << endl;
-		}
-
-		acosB = acosAngleB(side1, side2, h);
-		{
-			cout << "Angle B using inverse cosine: " << acosB << " degrees." << endl;
-		}
-
-		atanB = atanAngleB(side1, side2);
-		if (side1 != 0)
-		{
-			cout << "Angle B using inverse tangent:" << atanB << " degrees." << endl;
-		}
-		cout << "Reference angles for angle B includes: " << 180 - asinB << " degrees, " << 180 + asinB <<
-			" degrees, and " << 360 - asinB << " degrees." << endl;
-		cout << endl;
-		cout << "Please input an angle or a reference angle from A or B to find out its location within a unit circle. \n"; //Quadrant locator.
-		cin >> angle;
-		cout << endl;
-
-		quad(angle);
-
-		if (angle > 180 && angle <= 360)				//Taylor expansion is valid for angles between 0 and PI
-		{
-			angle = -(360 - angle);
-		}
-
-		radianAngle = (PI * angle) / 180;
-		cosine = 1 - (pow(radianAngle, 2) / twoFactorial) + (pow(radianAngle, 4) / fourFactorial) - (pow(radianAngle, 6) / sixFactorial) + (pow(radianAngle, 8) / eightFactorial);
-		sine = radianAngle - (pow(radianAngle, 3) / threeFactorial) + (pow(radianAngle, 5) / fiveFactorial) - (pow(radianAngle, 7) / sevenFactorial) + (pow(radianAngle, 9) / nineFactorial);
-		tangent = sine / cosine;
-
-
-
-		cout << "Sine of " << angle << " degrees equals " << sine << endl;
-		cout << "Cosine of " << angle << " degrees equals " << cosine << endl;
-		cout << "Tangent of " << angle << " degrees equals " << tangent << endl;
-
-	}
-	else if (choice == 2)
-	{
-		float l, a, b, A, V;
-		cout << "                     " << endl;
-		cout << "           V         " << endl;
-		cout << "          /|\\       " << endl;
-		cout << "         / | \\      " << endl;
-		cout << "        /  |  \\     " << endl;
-		cout << "       /   |a  \\ l  " << endl;
-		cout << "      /   _|_   \\   " << endl;
-		cout << "     /___|_|_|___\\  " << endl;
-		cout << "   A         b     A " << endl;
-		cout << "This is a simple triangle to calculate the length and angles of an isocolese triangle." << endl;
-		cout << "Please input the length of the leg and the base of the triangle: " << endl;
-		cout << "leg (l) = ";
-		cin >> l;
-		cout << endl;
-		cout << "base(b) = ";
-		cin >> b;
-		cout << endl;
-		a = isotrianglealt(l, b);
-		cout << "The altitude of the triangle is " << a << endl;
-		A = acosisoAngleA(l, b, a);
-		cout << "Both A Angles are equal to " << A << endl;
-		V = acosApex(b, l);
-		cout << "The Apex Angle equals " << V << endl;
-	}
-	else if (choice == 3)
-	{
-		struct ScaleneTriangle myTriangle;
-		cout << "         Apex Angle            " << endl;
-		cout << "             *       " << endl;
-		cout << "           * * *      " << endl;
-		cout << "          *  *   *     " << endl;
-		cout << " side1   *   *h    * side 2  " << endl;
-		cout << "        *    *       * " << endl;
-		cout << "       *     *         * " << endl;
-		cout << "Angle ******************* Angle" << endl;
-		cout << " A          base            B       " << endl;
-		cout << endl;
-		cout << "Welcome! " << endl;
-		cout << "This is a simple program to calculate the properties of a scalene triangle." << endl;
-		cout << endl;
-		cout << "First, please enter side 1 for your triangle: ";
-		cin >> myTriangle.side1;
-		cout << endl;
-		cout << "Enter the base for your triangle: ";
-		cin >> myTriangle.base;
-		cout << endl;
-		cout << "Enter one of the angles in your triangle: ";
-		cin >> myTriangle.angleA;
-		cout << endl;
-
-		ScaleneHeight(myTriangle);
-		ScaleneArea(myTriangle);
-		ScaleneSide2(myTriangle);
-		ScaleneAngleB(myTriangle);
-		ScaleneApexAngle(myTriangle);
-
-	}
-	else
-	{
-		cout << "Sorry, that is not a valid choice. Please select one of the above options." << endl;
-		cin >> choice;
-	}
-	return 0;
 }
