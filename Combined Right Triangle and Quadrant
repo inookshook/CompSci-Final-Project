@@ -218,7 +218,7 @@ int main()
 	do
 	{
 
-		int choice = introChoice();
+		int choice = introChoice();    
 		if (choice == 1)
 		{
 			double side1, side2, asinA, acosA, asinB, acosB, h, atanA, atanB;
@@ -294,7 +294,7 @@ int main()
 			cout << "Reference angles for angle B includes: " << 180 - asinB << " degrees, " << 180 + asinB <<
 				" degrees, and " << 360 - asinB << " degrees." << endl;
 			cout << endl;
-			cout << "Please input an angle or a reference angle from A or B to find out its location within a unit circle. \n"; //Quadrant locator.
+			cout << "Please input an angle or a reference angle from A or B to find out its location within a unit circle. \n"; //Quadrant locator. Interactive Unit Circle-https://www.mathsisfun.com/algebra/trig-interactive-unit-circle-flash.html
 			cin >> angle;
 			cout << endl;
 
