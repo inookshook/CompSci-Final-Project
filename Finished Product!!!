@@ -1,3 +1,5 @@
+//"TRIANGLE SOLVER" by Michelle Bowler, Jimuel Arguel, and Angel Zhang. '_'
+
 #include <iostream>
 #include <cmath>
 #include <iomanip>
@@ -121,36 +123,36 @@ double atanAngleB(double side1, double side2)									//used to calculate the ta
 	atanAngleB = atan(side2 / side1);
 	return atanAngleB * 180 / PI;
 }
-double RightTriangleArea(float side1, float side2)
+double RightTriangleArea(float side1, float side2)							//calculate the area of a right triangle
 {
 	float area;
-	area = (side1*side2) / 2;
+	area = (side1*side2) / 2;												//area calculation: (side1*side2)/2
 	return area;
 }
-void quad(double angle)				//used to calculate which quadrant angle is in
+void quad(double angle)  //Used to calculate quadrant.
 {
-	if (angle <= 90 && angle > 0)
+	if (angle <= 90 && angle > 0 || angle > -360 && angle <= -270)
 	{
 		cout << "The angle is in Quadrant I.\n";
 	}
-	else if (angle > 90 && angle <= 180)
+	else if (angle > 90 && angle <= 180 || angle >-270 && angle <= -180)
 	{
 		cout << "The angle is in Quadrant II. \n";
 	}
-	else if (angle > 180 && angle <= 270)
+	else if (angle > 180 && angle <= 270 || angle > -180 && angle <= -90)
 	{
 		cout << "The angle is in Quadrant III.\n";
 	}
-	else if (angle > 270 && angle <= 360)
+	else if (angle > 270 && angle <= 360 || angle >-90 && angle <= 0)
 	{
 		cout << "The angle is in Quadrant IV.\n";
 	}
 }
 
-double RightTrianglePerimeter(float side1, float side2)
+double RightTrianglePerimeter(float side1, float side2)									//perimeter calculation
 {
 	float perimeter;
-	perimeter = side1 + side2 + (sqrt(pow(side1, 2) + pow(side2, 2)));
+	perimeter = side1 + side2 + (sqrt(pow(side1, 2) + pow(side2, 2)));					//side1 + side2 + squareRoot(side1^2+side2^2)
 	return perimeter;
 }
 //Here are the functions for the Isocelese Triangle: 
@@ -175,16 +177,16 @@ double acosApex(double b, double l)
 	return V * 180 / PI;
 }
 
-double isoTriangleArea(float b, float a)
+double isoTriangleArea(float b, float a)												//Area of isoscelese triangle
 {
 	float area;
-	area = 0.5* (b * a);
+	area = 0.5* (b * a);																// area equation = 0.5*(side b + side a)
 	return area;
 }
-double isoTrianglePerimeter(float b, float a)
+double isoTrianglePerimeter(float b, float a)											//perimeter of isoselese triangle		
 {
 	float perimeter;
-	perimeter = 2 * (a + b);
+	perimeter = 2 * (a + b);															//perimeter equation: 2 * (a+b)
 	return perimeter;
 }
 //Here are the following functions for the scalene triangle program: 
@@ -225,9 +227,9 @@ void ScaleneApexAngle(struct ScaleneTriangle &inputTriangle)								//used to fi
 	cout << "Apex Angle (V) = " << inputTriangle.angleApex;
 }
 
-void ScalenePerimeter(struct ScaleneTriangle &inputTriangle)
+void ScalenePerimeter(struct ScaleneTriangle &inputTriangle)									//scalene perimeter equation
 {
-	inputTriangle.perimeter = inputTriangle.side1 + inputTriangle.side2 + inputTriangle.base;
+	inputTriangle.perimeter = inputTriangle.side1 + inputTriangle.side2 + inputTriangle.base;		//perimeter equation = side1 + side2 + side3(aka base)
 	cout << "The perimeter of this triangle = " << inputTriangle.perimeter << endl;
 }
 //Here is the function that calls the intro: 
@@ -245,84 +247,91 @@ int introChoice()
 
 int main()
 {
-	int choice = introChoice();
-	if (choice == 1)
+	int answer = 0;
+	do
 	{
-		double side1, side2, asinA, acosA, asinB, acosB, h, atanA, atanB, area, perimeter;
-		double angle, sine, cosine, tangent, radianAngle;
+		int choice = introChoice();
+		if (choice == 1)
+		{
+			double side1, side2, asinA, acosA, asinB, acosB, h, atanA, atanB, area, perimeter;
+			double angle, sine, cosine, tangent, radianAngle;
 
-
-		cout << "Welcome! " << endl << "This is a simple trigonometric program designed to calculate the dimensions and angles of a right triangle." << endl;
+			cout << "Welcome! " << endl << "This is a simple trigonometric program designed to calculate the dimensions and angles of a right triangle." << endl;
 			cout << endl;
-			cout << "              /| Angle B  " << endl;
-			cout << "             / |   " << endl;
-			cout << "            /  |   " << endl;
-			cout << "           /   |     " << endl;
-			cout << "        h /    |  a " << endl;
-			cout << "         /    _|  " << endl;
-			cout << "        /____|_| " << endl;
-			cout << "Angle A     b   Angle C    " << endl;													// a little graphic to give the viewer context (and to add a little fun to the program! :)
+			cout << "        B   " << endl;
+			cout << "       /|  " << endl;
+			cout << "      / |   " << endl;
+			cout << "     /  |   " << endl;
+			cout << "    /   |     " << endl;
+			cout << " h /    |  a " << endl;
+			cout << "  /    _|  " << endl;
+			cout << " /____|_| " << endl;
+			cout << "A    b   C   " << endl;
 			cout << "First, please input a value for a and b. \n";
 			cout << "a(side1) = ";															//a == side1
 			cin >> side1;
-			while (side1 == 0)
-
-	
-
-		{
-			cout << "This side cannot be 0. Please input a valid number." << endl;
-			cout << "a(side1) =";
-			cin >> side1;
 			cout << endl;
-		}
+			while (side1 == 0)
+			{
+				cout << "This side cannot be 0. Please input a valid number." << endl;
+				cout << "a(side1) =";
+				cin >> side1;
+				cout << endl;
+			}
 
-		cout << "b(side2) = ";															//b == side2
-		cin >> side2;
-		cout << endl;
-		while (side2 == 0)
-		{
-			cout << "This side cannot be 0. Please input a valid number." << endl;
+			cout << "b(side2) = ";															//b == side2
 			cin >> side2;
 			cout << endl;
-		}
+			while (side2 == 0)
+			{
+				cout << "This side cannot be 0. Please input a valid number." << endl;
+				cin >> side2;
+				cout << endl;
+			}
 
-		h = hypo(side1, side2);
-		cout << "The hypotenuse (h):" << h << endl;
-		area = RightTriangleArea(side1, side2);
-		cout << endl;
-		cout << "The area of the triangle is: " << area << endl;
-		perimeter = RightTrianglePerimeter(side1, side2);
-		cout << "The perimeter of the triangle is: " << perimeter << endl;
+			h = hypo(side1, side2);
+			cout << "The hypotenuse (h):" << h << endl;
+			area = RightTriangleArea(side1, side2);
+			cout << endl;
+			cout << "The area of the triangle is: " << area << endl;
+			perimeter = RightTrianglePerimeter(side1, side2);
+			cout << "The perimeter of the triangle is: " << perimeter << endl;
 
-		cout << "Stats on Angle A: " << endl;
-		asinA = asinAngleA(side1, side2, h);
-		{
-			cout << "Angle A using inverse sine:" << asinA << " Degrees" << endl;
-		}
-		acosA = acosAngleA(side1, side2, h);
-		{
-			cout << "Angle A using inverse cosin: " << acosA << " Degrees" << endl;
-		}
-		atanA = atanAngleA(side1, side2);
-		if (side2 != 0)
-		{
-
-
-			cout << "Angle A using inverse tangent:" << atanA << endl;
-		}
+			cout << "Stats on Angle A: " << endl;
+			asinA = asinAngleA(side1, side2, h);
+			{
+				cout << "Angle A using inverse sine:" << asinA << " Degrees" << endl;
+			}
+			acosA = acosAngleA(side1, side2, h);
+			{
+				cout << "Angle A using inverse cosin: " << acosA << " Degrees" << endl;
+			}
+			atanA = atanAngleA(side1, side2);
+			if (side2 != 0)
+			{
 
 
-		cout << endl;
-		cout << "Stats on Angle B: " << endl;
-		asinB = asinAngleB(side1, side2, h);
-		{
-			cout << "Angle B using inverse sine: " << asinB << " Degrees" << endl;
-		}
+				cout << "Angle A using inverse tangent:" << atanA << endl;
+			}
+			cout << "Reference angles for angle A includes: " << 180 - asinA << " degrees, " << 180 + asinA <<
+				" degrees, and " << 360 - asinA << " degrees." << endl;
+			cout << endl;
+			cout << endl;
+			cout << "Stats on Angle B: " << endl;
+			asinB = asinAngleB(side1, side2, h);
+			{
+				cout << "Angle B using inverse sine: " << asinB << " Degrees" << endl;
+			}
+
+			acosB = acosAngleB(side1, side2, h);
+			{
+				cout << "Angle B using inverse cosine: " << acosB << " Degrees" << endl;
+			}
 
 			atanB = atanAngleB(side1, side2);
 			if (side1 != 0)
 			{
-				cout << "Angle B using inverse tangent:" << atanB << " degrees." << endl;
+				cout << "Angle B using inverse tangent:" << atanB << endl;
 			}
 			cout << "Reference angles for angle B includes: " << 180 - asinB << " degrees, " << 180 + asinB <<
 				" degrees, and " << 360 - asinB << " degrees." << endl;
@@ -330,122 +339,84 @@ int main()
 			cout << "Please input an angle or a reference angle from A or B to find out its location within a unit circle. \n"; //Quadrant locator. Interactive Unit Circle-https://www.mathsisfun.com/algebra/trig-interactive-unit-circle-flash.html
 			cin >> angle;
 			cout << endl;
+			quad(angle);
+
+			if (angle > 180 && angle <= 360)				//Taylor expansion is valid for angles between 0 and PI
+			{
+				angle = -(360 - angle);
+			}
+
+			radianAngle = (PI * angle) / 180;				//convert angle to radians in order to calculate place on unit circle correctly
+			cosine = 1 - (pow(radianAngle, 2) / twoFactorial) + (pow(radianAngle, 4) / fourFactorial) - (pow(radianAngle, 6) / sixFactorial) + (pow(radianAngle, 8) / eightFactorial);
+			sine = radianAngle - (pow(radianAngle, 3) / threeFactorial) + (pow(radianAngle, 5) / fiveFactorial) - (pow(radianAngle, 7) / sevenFactorial) + (pow(radianAngle, 9) / nineFactorial);
+			tangent = sine / cosine;
 
 
-		acosB = acosAngleB(side1, side2, h);
-		{
-			cout << "Angle B using inverse cosine: " << acosB << " Degrees" << endl;
+
+			cout << "Sine of " << angle << " degrees equals " << sine << endl;
+			cout << "Cosine of " << angle << " degrees equals " << cosine << endl;
+			cout << "Tangent of " << angle << " degrees equals " << tangent << endl;
+
 		}
-
-		atanB = atanAngleB(side1, side2);
-		if (side1 != 0)
+		else if (choice == 2)
 		{
-			cout << "Angle B using inverse tangent:" << atanB << endl;
-		}
-		cout << endl;
-		cout << "Please round angle A or B to a whole number and input either.\n";		//start of unit circle section of the right triangle program
-		cin >> angle;
-		cout << endl;
-
-		quad(angle);
-
-		if (angle > 180 && angle <= 360)				//Taylor expansion is valid for angles between 0 and PI
-		{
-			angle = -(360 - angle);
-		}
-
-		radianAngle = (PI * angle) / 180;				//convert angle to radians in order to calculate place on unit circle correctly
-		cosine = 1 - (pow(radianAngle, 2) / twoFactorial) + (pow(radianAngle, 4) / fourFactorial) - (pow(radianAngle, 6) / sixFactorial) + (pow(radianAngle, 8) / eightFactorial);
-		sine = radianAngle - (pow(radianAngle, 3) / threeFactorial) + (pow(radianAngle, 5) / fiveFactorial) - (pow(radianAngle, 7) / sevenFactorial) + (pow(radianAngle, 9) / nineFactorial);
-		tangent = sine / cosine;
-
-
-
-		cout << "Sine of " << angle << " degrees equals " << sine << endl;
-		cout << "Cosine of " << angle << " degrees equals " << cosine << endl;
-		cout << "Tangent of " << angle << " degrees equals " << tangent << endl;
-
-	}
-	else if (choice == 2)
-	{
-		float l, a, b, A, V, area, perimeter;
-		cout << "                     " << endl;
-		cout << "           V         " << endl;
-		cout << "          /|\\       " << endl;
-		cout << "         / | \\      " << endl;
-		cout << "        /  |  \\     " << endl;
-		cout << "       /   |a  \\ l  " << endl;
-		cout << "      /   _|_   \\   " << endl;
-		cout << "     /___|_|_|___\\  " << endl;
-		cout << "   A         b     A " << endl;
-		cout << "This is a simple triangle to calculate the length and angles of an isocolese triangle. In an isocolese triangle, both legs are equal. " << endl;
-		cout << "Please input the length of the leg and the base of the triangle: " << endl;
-		cout << "l(leg) = ";
-		cin >> l;
-		cout << endl;
-		while (l == 0)
-		{
-			cout << "The length of the leg cannot be equal to zero. Please input another number." << endl;
+			float l, a, b, A, V, area, perimeter;
+			cout << "                     " << endl;
+			cout << "           V         " << endl;
+			cout << "          /|\\       " << endl;
+			cout << "         / | \\      " << endl;
+			cout << "        /  |  \\     " << endl;
+			cout << "       /   |a  \\ l  " << endl;
+			cout << "      /   _|_   \\   " << endl;
+			cout << "     /___|_|_|___\\  " << endl;
+			cout << "   A         b     A " << endl;
+			cout << "This is a simple triangle to calculate the length and angles of an isocolese triangle. In an isocolese triangle, both legs are equal. " << endl;
+			cout << "Please input the length of the leg and the base of the triangle: " << endl;
+			cout << "l(leg) = ";
 			cin >> l;
 			cout << endl;
-		}
-		cout << "b(base) = ";
-		cin >> b;
-		cout << endl;
-		while (b == 0)
-		{
-			cout << "The length of the base cannot be equal to zero. Please input another number." << endl;
+			while (l == 0)
+			{
+				cout << "The length of the leg cannot be equal to zero. Please input another number." << endl;
+				cin >> l;
+				cout << endl;
+			}
+			cout << "b(base) = ";
 			cin >> b;
 			cout << endl;
+			while (b == 0)
+			{
+				cout << "The length of the base cannot be equal to zero. Please input another number." << endl;
+				cin >> b;
+				cout << endl;
+			}
+			a = isotrianglealt(l, b);
+			cout << "The altitude (a) of the triangle is " << a << endl;
+			A = acosisoAngleA(l, b, a);
+			cout << "Both A Angles (A) are equal to " << A << endl;
+			V = acosApex(b, l);
+			cout << "The Apex Angle (V) equals " << V << endl;
+			area = isoTriangleArea(b, a);
+			cout << "The area of the triangle is " << area << endl;
+			perimeter = isoTrianglePerimeter(b, a);
+			cout << "The perimeter of the triangle is " << perimeter << endl;
 		}
-		a = isotrianglealt(l, b);
-		cout << "The altitude (a) of the triangle is " << a << endl;
-		A = acosisoAngleA(l, b, a);
-		cout << "Both A Angles (A) are equal to " << A << endl;
-		V = acosApex(b, l);
-		cout << "The Apex Angle (V) equals " << V << endl;
-		area = isoTriangleArea(b, a);
-		cout << "The area of the triangle is " << area << endl;
-		perimeter = isoTrianglePerimeter(b, a);
-		cout << "The perimeter of the triangle is " << perimeter << endl;
-	}
-	else if (choice == 3)
-	{
-		struct ScaleneTriangle myTriangle;
-		cout << "             V            " << endl;
-		cout << "             *       " << endl;
-		cout << "           * * *      " << endl;
-		cout << "          *  *   *     " << endl;
-		cout << "     a   *   *h    *  c  " << endl;
-		cout << "        *    *       *   " << endl;
-		cout << "       *     *         * " << endl;
-		cout << "    A ******************* B" << endl;
-		cout << "             b                   " << endl;
-		cout << endl;
-		cout << "This is a simple program to calculate the properties of a scalene triangle. In a scalene triangle, no sides are equal." << endl;
-		cout << endl;
-		cout << "First, please enter side 1(a) for your triangle: ";
-		cin >> myTriangle.side1;
-		cout << endl;
-		while (myTriangle.side1 == 0)
+		else if (choice == 3)
 		{
-			cout << "Side 1 cannot be zero. Please enter a valid number." << endl;
-			cin >> myTriangle.side1;
+			struct ScaleneTriangle myTriangle;
+			cout << "             V            " << endl;
+			cout << "             *       " << endl;
+			cout << "           * * *      " << endl;
+			cout << "          *  *   *     " << endl;
+			cout << "     a   *   *h    *  c  " << endl;
+			cout << "        *    *       *   " << endl;
+			cout << "       *     *         * " << endl;
+			cout << "    A ******************* B" << endl;
+			cout << "             b                   " << endl;
 			cout << endl;
-		}
-		cout << "Enter the base (b) for your triangle: ";
-		cin >> myTriangle.base;
-		cout << endl;
-		while (myTriangle.base == 0)
-		{
-			cout << "The base cannot be zero. Please enter a valid number." << endl;
-			cin >> myTriangle.base;
+			cout << "This is a simple program to calculate the properties of a scalene triangle. In a scalene triangle, no sides are equal." << endl;
 			cout << endl;
-		}
-		while (myTriangle.base == myTriangle.side1)
-		{
-			cout << "Remember, a scalene triangle cannot be equal. Please enter new values that are not equal to each other. " << endl;
-			cout << "Please enter side 1(a) for your triangle: ";
+			cout << "First, please enter side 1(a) for your triangle: ";
 			cin >> myTriangle.side1;
 			cout << endl;
 			while (myTriangle.side1 == 0)
@@ -463,22 +434,47 @@ int main()
 				cin >> myTriangle.base;
 				cout << endl;
 			}
-		}
-		cout << "Enter Angle A (A) in your triangle: ";
-		cin >> myTriangle.angleA;
-		cout << endl;
+			while (myTriangle.base == myTriangle.side1)
+			{
+				cout << "Remember, a scalene triangle cannot be equal. Please enter new values that are not equal to each other. " << endl;
+				cout << "Please enter side 1(a) for your triangle: ";
+				cin >> myTriangle.side1;
+				cout << endl;
+				while (myTriangle.side1 == 0)
+				{
+					cout << "Side 1 cannot be zero. Please enter a valid number." << endl;
+					cin >> myTriangle.side1;
+					cout << endl;
+				}
+				cout << "Enter the base (b) for your triangle: ";
+				cin >> myTriangle.base;
+				cout << endl;
+				while (myTriangle.base == 0)
+				{
+					cout << "The base cannot be zero. Please enter a valid number." << endl;
+					cin >> myTriangle.base;
+					cout << endl;
+				}
+			}
+			cout << "Enter Angle A (A) in your triangle: ";
+			cin >> myTriangle.angleA;
+			cout << endl;
 
-		ScaleneHeight(myTriangle);
-		ScaleneSide2(myTriangle);
-		ScaleneAngleB(myTriangle);
-		ScaleneApexAngle(myTriangle);
-		ScaleneArea(myTriangle);
-		ScalenePerimeter(myTriangle);
-	}
-	else
-	{
-		cout << "Sorry, that is not a valid choice. Please select one of the above options." << endl;
-		cin >> choice;
-	}
-	return 0;
+			ScaleneHeight(myTriangle);
+			ScaleneSide2(myTriangle);
+			ScaleneAngleB(myTriangle);
+			ScaleneApexAngle(myTriangle);
+			ScaleneArea(myTriangle);
+			ScalenePerimeter(myTriangle);
+		}
+		else
+		{
+			cout << "Sorry, that is not a valid choice. Please select one of the above options." << endl;
+			cin >> choice;
+		}
+
+		cout << "Would you like to try a different choice? Yes=1 or No=2" << endl;
+		cin >> answer;
+	} while (answer == 1);
+
 }
