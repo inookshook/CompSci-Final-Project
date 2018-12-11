@@ -251,21 +251,24 @@ int main()
 		double side1, side2, asinA, acosA, asinB, acosB, h, atanA, atanB, area, perimeter;
 		double angle, sine, cosine, tangent, radianAngle;
 
+
 		cout << "Welcome! " << endl << "This is a simple trigonometric program designed to calculate the dimensions and angles of a right triangle." << endl;
-		cout << endl;
-		cout << "       /|  " << endl;
-		cout << "      / |   " << endl;
-		cout << "     /  |   " << endl;
-		cout << "    /   |     " << endl;
-		cout << " h /    |  a " << endl;
-		cout << "  /    _|  " << endl;
-		cout << " /____|_| " << endl;
-		cout << "     b      " << endl;
-		cout << "First, please input a value for a and b. \n";
-		cout << "a(side1) = ";															//a == side1
-		cin >> side1;
-		cout << endl;
-		while (side1 == 0)
+			cout << endl;
+			cout << "              /| Angle B  " << endl;
+			cout << "             / |   " << endl;
+			cout << "            /  |   " << endl;
+			cout << "           /   |     " << endl;
+			cout << "        h /    |  a " << endl;
+			cout << "         /    _|  " << endl;
+			cout << "        /____|_| " << endl;
+			cout << "Angle A     b   Angle C    " << endl;													// a little graphic to give the viewer context (and to add a little fun to the program! :)
+			cout << "First, please input a value for a and b. \n";
+			cout << "a(side1) = ";															//a == side1
+			cin >> side1;
+			while (side1 == 0)
+
+	
+
 		{
 			cout << "This side cannot be 0. Please input a valid number." << endl;
 			cout << "a(side1) =";
@@ -308,12 +311,26 @@ int main()
 			cout << "Angle A using inverse tangent:" << atanA << endl;
 		}
 
+
 		cout << endl;
 		cout << "Stats on Angle B: " << endl;
 		asinB = asinAngleB(side1, side2, h);
 		{
 			cout << "Angle B using inverse sine: " << asinB << " Degrees" << endl;
 		}
+
+			atanB = atanAngleB(side1, side2);
+			if (side1 != 0)
+			{
+				cout << "Angle B using inverse tangent:" << atanB << " degrees." << endl;
+			}
+			cout << "Reference angles for angle B includes: " << 180 - asinB << " degrees, " << 180 + asinB <<
+				" degrees, and " << 360 - asinB << " degrees." << endl;
+			cout << endl;
+			cout << "Please input an angle or a reference angle from A or B to find out its location within a unit circle. \n"; //Quadrant locator. Interactive Unit Circle-https://www.mathsisfun.com/algebra/trig-interactive-unit-circle-flash.html
+			cin >> angle;
+			cout << endl;
+
 
 		acosB = acosAngleB(side1, side2, h);
 		{
