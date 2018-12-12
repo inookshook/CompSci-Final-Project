@@ -247,11 +247,17 @@ int introChoice()
 
 int main()
 {
-	
+
 	int answer = 0;
 	do
 	{
+
 		int choice = introChoice();
+		while (choice > 3 || choice <= 0)
+		{
+			cout << "Sorry, that is not a valid choice. Please select one of the above options." << endl;
+			cin >> choice;
+		}
 		if (choice == 1)
 		{
 			double side1, side2, asinA, acosA, asinB, acosB, h, atanA, atanB, area, perimeter;
@@ -472,11 +478,8 @@ int main()
 			ScaleneArea(myTriangle);
 			ScalenePerimeter(myTriangle);
 		}
-		else
-		{
-			cout << "Sorry, that is not a valid choice. Please select one of the above options." << endl;
-			cin >> choice;
-		}
+		
+		
 
 		cout << "Would you like to try a different choice? Yes=1 or No=2" << endl;
 		cin >> answer;
