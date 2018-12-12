@@ -27,9 +27,9 @@ double RightTriangleArea(float side1, float side2);
 double RightTrianglePerimeter(float side1, float side2);
 void quad();
 
-//the following are the functions that the Isocelese Triangle program calls: 
+//the following are the functions that the Isosceles Triangle program calls: 
 double isotrianglealt(double l, double b);
-float acosIsoAngleA(float l, float b, float a);						//Iso = diminutive for Isoscelese
+float acosIsoAngleA(float l, float b, float a);						//Iso = diminutive for Isosceles 
 double acosApex(double b, double l);
 double isoTriangleArea(float b, float a);
 double isoTrianglePerimeter(float b, float a);
@@ -155,9 +155,9 @@ double RightTrianglePerimeter(float side1, float side2)									//perimeter calc
 	perimeter = side1 + side2 + (sqrt(pow(side1, 2) + pow(side2, 2)));					//side1 + side2 + squareRoot(side1^2+side2^2)
 	return perimeter;
 }
-//Here are the functions for the Isocelese Triangle: 
+//Here are the functions for the Isosceles  Triangle: 
 double isotrianglealt(double l, double b)													//b = base, l= leg, a= altitude
-{																							//isotrianglealt calculates the altitude of the isocolese triangle.
+{																							//isotrianglealt calculates the altitude of the Isosceles  triangle.
 	double a;
 	a = sqrt(pow(l, 2) - pow((b / 2), 2));												 //equation: A = square root ((leg)^2 - ((b/2)^2)
 	return a;
@@ -177,13 +177,13 @@ double acosApex(double b, double l)
 	return V * 180 / PI;
 }
 
-double isoTriangleArea(float b, float a)												//Area of isoscelese triangle
+double isoTriangleArea(float b, float a)												//Area of Isosceles  triangle
 {
 	float area;
 	area = 0.5* (b * a);																// area equation = 0.5*(side b + side a)
 	return area;
 }
-double isoTrianglePerimeter(float b, float a)											//perimeter of isoselese triangle		
+double isoTrianglePerimeter(float b, float a)											//perimeter of Isosceles  triangle		
 {
 	float perimeter;
 	perimeter = 2 * (a + b);															//perimeter equation: 2 * (a+b)
@@ -339,6 +339,9 @@ int main()
 			cout << "Please input an angle or a reference angle from A or B to find out its location within a unit circle. \n"; //Quadrant locator. Interactive Unit Circle-https://www.mathsisfun.com/algebra/trig-interactive-unit-circle-flash.html
 			cin >> angle;
 			cout << endl;
+			
+			//Interactive Unit Circle. 
+				https://www.mathsisfun.com/algebra/trig-interactive-unit-circle.html
 			quad(angle);
 
 			if (angle > 180 && angle <= 360)				//Taylor expansion is valid for angles between 0 and PI
@@ -370,7 +373,7 @@ int main()
 			cout << "      /   _|_   \\   " << endl;
 			cout << "     /___|_|_|___\\  " << endl;
 			cout << "   A         b     A " << endl;
-			cout << "This is a simple triangle to calculate the length and angles of an isocolese triangle. In an isocolese triangle, both legs are equal. " << endl;
+			cout << "This is a simple triangle to calculate the length and angles of an Isosceles  triangle. In an Isosceles  triangle, both legs are equal. " << endl;
 			cout << "Please input the length of the leg and the base of the triangle: " << endl;
 			cout << "l(leg) = ";
 			cin >> l;
@@ -476,5 +479,8 @@ int main()
 		cout << "Would you like to try a different choice? Yes=1 or No=2" << endl;
 		cin >> answer;
 	} while (answer == 1);
+	
+		//GitHub link for full code. https://github.com/inookshook/CompSci-Final-Project/edit/master/Finished%20Product!!!
+	
 	return 0;
 }
