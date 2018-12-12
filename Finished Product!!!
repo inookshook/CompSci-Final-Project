@@ -476,5 +476,5 @@ int main()
 		cout << "Would you like to try a different choice? Yes=1 or No=2" << endl;
 		cin >> answer;
 	} while (answer == 1);
-
+	return 0;
 }
