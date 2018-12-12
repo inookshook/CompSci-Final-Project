@@ -247,6 +247,7 @@ int introChoice()
 
 int main()
 {
+	
 	int answer = 0;
 	do
 	{
@@ -257,6 +258,7 @@ int main()
 			double angle, sine, cosine, tangent, radianAngle;
 
 			cout << "Welcome! " << endl << "This is a simple trigonometric program designed to calculate the dimensions and angles of a right triangle." << endl;
+			cout << "To start off, keep in mind that any right triangle will always have a 90 degree angle within it and all angles within any triangle will equal 180 degrees.\n";
 			cout << endl;
 			cout << "        B   " << endl;
 			cout << "       /|  " << endl;
@@ -339,9 +341,9 @@ int main()
 			cout << "Please input an angle or a reference angle from A or B to find out its location within a unit circle. \n"; //Quadrant locator. Interactive Unit Circle-https://www.mathsisfun.com/algebra/trig-interactive-unit-circle-flash.html
 			cin >> angle;
 			cout << endl;
-			
+
 			//Interactive Unit Circle. 
-				https://www.mathsisfun.com/algebra/trig-interactive-unit-circle.html
+		https://www.mathsisfun.com/algebra/trig-interactive-unit-circle.html
 			quad(angle);
 
 			if (angle > 180 && angle <= 360)				//Taylor expansion is valid for angles between 0 and PI
@@ -479,8 +481,8 @@ int main()
 		cout << "Would you like to try a different choice? Yes=1 or No=2" << endl;
 		cin >> answer;
 	} while (answer == 1);
-	
-		//GitHub link for full code. https://github.com/inookshook/CompSci-Final-Project/edit/master/Finished%20Product!!!
-	
+
+	//GitHub link for full code. https://github.com/inookshook/CompSci-Final-Project/edit/master/Finished%20Product!!!
+
 	return 0;
 }
